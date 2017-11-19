@@ -7,6 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jsf-bootstrap Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	
 	<dependencies>
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -19,6 +20,22 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>2.2.11</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/javax.enterprise/cdi-api -->
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>6.0</version>
+		</dependency>
+		
 
 		<dependency>
 			<groupId>javax.el</groupId>
@@ -46,7 +63,21 @@
 			<type>maven-plugin</type>
 		</dependency>
 	</dependencies>
+
 	<build>
+
+		<plugins>
+			<!-- update to lastes version of JAVA -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+
 		<finalName>jsf-bootstrap</finalName>
 	</build>
 </project>

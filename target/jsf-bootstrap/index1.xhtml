@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h5="http://java.sun.com/jsf/composite/html5">
+<h:head>
+	<h:outputStylesheet library="css" name="table-style.css" />
+</h:head>
+<h:body>
+
+	<h1>JSF 2 dataTable example</h1>
+	<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+		<ui:repeat var="o" value="#{userController.list1}">
+		
+				<p id="drag_#{o.name}"
+				draggable="true" ondragstart="drag(event)">#{o.name}</p>
+
+		</ui:repeat>
+		
+	</div>
+	
+	<br />
+	<br />
+
+	<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+		<ui:repeat var="o" value="#{userController.list2}">
+			
+				<p id="drag_#{o.name}"
+				draggable="true" ondragstart="drag(event)">#{o.name}</p>
+
+		</ui:repeat>
+
+	</div>
+	
+	<h:panelGrid columns="1" id="items">
+	  <ui:repeat value="#{userController.list1}" var="item">
+
+	    <h5:drag ondragstart="dragStart(event)">
+		   <p><a href="#{item.type}" draggable="false">#{item.name}</a> <br /></p>
+		</h5:drag>
+
+		</ui:repeat>
+	</h:panelGrid>
+	
+	
+	
+	<h5:drop id="dropzone" payload="#{dragDrop.payload}" render="@this"
+		ondragover="dragover(event)"
+		ondragenter="dragenter(event)" 
+		ondragleave="dragleave(event)"
+		ondrop="dropStart(event)">
+
+		<div class="welcomeImage">
+		    <h:graphicImage id="welcomeImage" 
+		    	library="images" name="cloudy.gif"/>
+		</div>
+			
+		<br />
+
+		<div class="savedItems">
+	 	    <ui:repeat value="#{userController.list2}" var="item">
+	 	      <div class="savedLink">
+		 	    <a href="#{item.type}">
+		 	  	  #{item.name}
+		 	  	</a>
+		 	  	
+		 	  	<br/>
+	 	    </div>
+		  </ui:repeat>		
+		</div>
+
+	</h5:drop>
+	
+	<h:outputScript library="jquery" name="jquery-1.12.4.min.js" />
+	<h:outputScript library="js" name="app.js" />
+</h:body>
+</html>
